@@ -1,13 +1,17 @@
 #include "example.hpp"
 
 
-/* AbstractBase */
+/* Base */
 /* ------------------------------------------------------------------------- */
-void AbstractBase::do_info() const
+void Base::do_info() const
 {
     std::cout << name_ << ", " << num_ << std::endl;
 }
-
+void Base::info() const
+{
+    std::cout << "Base:\n";
+    do_info();
+}
 /* ------------------------------------------------------------------------- */
 
 /* DerivedOne */
@@ -21,7 +25,7 @@ void DerivedOne::do_info() const
 void DerivedOne::info() const
 {
     std::cout << "DerivedOne:\n";
-    AbstractBase::do_info();
+    Base::do_info();
     do_info();
 }
 /* ------------------------------------------------------------------------- */
@@ -37,7 +41,7 @@ void DerivedTwo::do_info() const
 void DerivedTwo::info() const
 {
     std::cout << "DerivedTwo:\n";
-    AbstractBase::do_info();
+    Base::do_info();
     do_info();
 }
 /* ------------------------------------------------------------------------- */
@@ -49,7 +53,7 @@ void DerivedMultiple::do_info() const
 void DerivedMultiple::info() const
 {
     std::cout << "DerivedMultiple:\n";
-    AbstractBase::do_info();
+    Base::do_info();
     DerivedOne::do_info();
     DerivedTwo::do_info();
     do_info();
