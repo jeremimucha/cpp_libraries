@@ -358,6 +358,20 @@ public:
     {
         shared_data.emplace_back(std::move(rv).clone());
     }
+
+// iterators
+    // typedef std::shared_ptr<Base>* iterator;
+    // typedef const std::shared_ptr<Base>* const_iterator;
+    typedef std::vector<std::shared_ptr<Base>>::iterator iterator;
+    typedef std::vector<std::shared_ptr<Base>>::const_iterator const_iterator;
+    iterator begin()
+        { return shared_data.begin(); }
+    iterator end()
+        { return shared_data.end(); }
+    const_iterator cbegin() const noexcept
+        { return shared_data.cbegin(); }
+    const_iterator cend() const noexcept
+        { return shared_data.cend(); }
     
     template<typename Archive>
     void serialize( Archive& ar, const std::uint32_t version )
