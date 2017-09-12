@@ -34,3 +34,6 @@
 /.vscode
 *.xml
 *.bin
+
+**/**/build/
+**/**/CMakeFiles/
