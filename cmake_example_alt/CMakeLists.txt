@@ -4,20 +4,22 @@ set( PROJECT_NAME
      main
 )
 
-# Dependencies / headers - glob all headers in the include dir
+# Dependencies / headers - 
 set( PROJECT_HEADERS_DIR
      include
 )
+# glob all headers in the include dir
 file( GLOB PROJECT_HEADERS
       "${PROJECT_HEADERS_DIR}/*.hpp"
 )
 # or declare them explicitly
 # set( PROJECT_HEADERS ${PROJECT_HEADERS_DIR}/List.hpp )
 
-# Source files - glob all source files in the src dir
+# Source files
 set( PROJECT_SOURCE_DIR
      src
 )
+# glob all source files in the src dir
 file( GLOB PROJECT_SOURCE
       "${PROJECT_SOURCE_DIR}/*.cpp"
 )
