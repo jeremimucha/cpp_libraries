@@ -103,11 +103,11 @@ int main()
 
     boost::this_thread::sleep( boost::posix_time::seconds( 1 ) );
 
-    strand->post( boost::bind( &PrintNum, 1 ) );    
-    strand->post( boost::bind( &PrintNum, 2 ) );
-    strand->post( boost::bind( &PrintNum, 3 ) );
-    strand->post( boost::bind( &PrintNum, 4 ) );    
-    strand->post( boost::bind( &PrintNum, 5 ) );
+    // strand->post( boost::bind( &PrintNum, 1 ) );    
+    // strand->post( boost::bind( &PrintNum, 2 ) );
+    // strand->post( boost::bind( &PrintNum, 3 ) );
+    // strand->post( boost::bind( &PrintNum, 4 ) );    
+    // strand->post( boost::bind( &PrintNum, 5 ) );
 
     boost::shared_ptr< boost::asio::deadline_timer > timer(
         new boost::asio::deadline_timer( *io_service )
@@ -117,6 +117,12 @@ int main()
         strand->wrap( boost::bind( &TimerHandler,
                                    boost::asio::placeholders::error,
                                    timer, strand ) ) );
+    for( int i=0; i<11; ++i ){
+        // doesn't guarantee order of execution
+        io_service->post( strand->wrap( boost::bind( &PrintNum, i ) ) );
+        // does guarantee order of execution
+        strand->post( boost::bind( &PrintNum, i ) );
+    }
     
     std::cin.get();
 

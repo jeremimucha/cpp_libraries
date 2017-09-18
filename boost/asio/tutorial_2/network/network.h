@@ -22,7 +22,7 @@ using boost::int64_t;
 using boost::int32_t;
 using boost::int16_t;
 using boost::int8_t;
-
+using boost::asio::ip::tcp;
 /* ------------------------------------------------------------------------- */
 
 class Hive;
@@ -38,8 +38,6 @@ class Connection : public boost::enable_shared_from_this< Connection >
     friend class Acceptor;
     friend class Hive;
 
-    using boost::asio::ip::tcp;
-
 private:
     boost::shared_ptr< Hive >           m_hive;
     tcp::socket                         m_socket;
@@ -49,7 +47,7 @@ private:
     std::vector< uint8_t >              m_recv_buffer;
     std::list< int32_t >                m_pending_recvs;
     std::list< std::vector< uint8_t > > m_pending_sends;    
-    int32_t                             m_receivee_buffer_size;
+    int32_t                             m_receive_buffer_size;
     int32_t                             m_timer_interval;
     volatile uint32_t                   m_error_state;
 
@@ -149,7 +147,6 @@ public:
 class Acceptor : public boost::enable_shared_from_this< Acceptor >
 {
     friend class Hive;
-    using boost::asio::ip::tcp;
 
 private:
     boost::shared_ptr< Hive >   m_hive;
