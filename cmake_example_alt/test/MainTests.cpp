@@ -4,5 +4,5 @@
 TEST( ListLibraryTests, Default )
 {
     EXPECT_EQ( 2, 2 );
-    EXPECT_EQ( 2, 1 );
+    EXPECT_EQ( 2, 1 ) << "2 != 1";
 }
